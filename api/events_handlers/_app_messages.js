@@ -7,7 +7,13 @@ export async function app_message_received(req, res) {
         if (event.channel !== clipboardChannelId) {
             await debug(res, `Message not from ${clipboardChannelId}, ignore the message`)
         } else {
-            await sendToJoinClipBoard(res, JSON.stringify(event));
+            if (event.text){
+                await sendToJoinClipBoard(res, event.text);
+            } else if (event.blocks) {
+                await sendToJoinClipBoard(res, JSON.stringify(event.blocks));
+            } else {
+                await debug(res, "Message has no text or blocks, ignore the message")
+            }
         }
     }
     catch (e) {
