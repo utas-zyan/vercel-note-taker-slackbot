@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
             switch (event_type) {
                 case "app_mention": await app_mention(req, res); break;
                 case "channel_created": await channel_created(req, res); break;
-                default: break;
+                default: console.log("unhandled event" + event_type);
             }
 
         }
