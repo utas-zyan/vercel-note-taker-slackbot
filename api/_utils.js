@@ -69,7 +69,7 @@ async function channelNameToId(channelName) {
 }
 export async function sendToJoinClipBoard(content) {
     await axios({
-        method: 'post',
+        method: 'get',
         url: 'https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush',
         arguments: { 
             deviceId: "group.all",
