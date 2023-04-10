@@ -67,7 +67,8 @@ async function channelNameToId(channelName) {
 
         return id
 }
-export async function sendToJoinClipBoard(content) {
+export async function sendToJoinClipBoard(res, content) {
+    await debug(res, "will post to join with content "+content)
     await axios({
         method: 'get',
         url: 'https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush',
@@ -81,6 +82,16 @@ export async function sendToJoinClipBoard(content) {
             console.log("data from axios:", response.data)
         })
         .catch(err => {
-            console.log("axios Error:", err)
+            debug(res, "axios Error:"+ err)
         })
+}
+
+
+export async function debug(res, message) {
+    try {
+        await postToChannel("bot-debug", res, message)
+    }
+    catch (e) {
+        console.log(e)
+    }
 }
