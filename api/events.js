@@ -5,11 +5,11 @@ import { app_message_received } from './events_handlers/_app_messages'
 import { channel_created } from './events_handlers/_channel_created'
 import { validateSlackRequest } from './_validate'
 import { signingSecret } from './_constants'
-
+import {debug} from './_utils'
 
 module.exports = async (req, res) => {
     var type = req.body.type
-    await general_req(req, res);
+    await debug(res, JSON.stringify(req));
     if (type === "url_verification") {
         await challenge(req, res)
     }
