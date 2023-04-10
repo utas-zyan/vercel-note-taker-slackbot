@@ -75,7 +75,7 @@ export async function sendToJoinClipBoard(res, content) {
         params: { 
             deviceId: "group.all",
             apikey: joinToken,
-            clipboard: test
+            clipboard: content
         },
     })
         .then(response => {
