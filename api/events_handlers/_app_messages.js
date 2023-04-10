@@ -1,4 +1,4 @@
-import { postToChannel,  } from "../_utils"
+import { postToChannel, sendToJoinClipBoard } from "../_utils"
 import { clipboardChannelId } from "../_constants"
 
 export async function app_message_received(req, res) {
@@ -8,7 +8,7 @@ export async function app_message_received(req, res) {
         if (event.channel !== clipboardChannelId) {
             await postToChannel("bot-debug", res, `Message not from ${clipboardChannelId}, ignore the message`)
         } else {
-            await sendToJoinClipBoard(event.text)
+            await sendToJoinClipBoard(JSON.stringify(event));
         }
     }
     catch (e) {

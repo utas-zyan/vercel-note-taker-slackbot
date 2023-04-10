@@ -67,7 +67,7 @@ async function channelNameToId(channelName) {
 
         return id
 }
-async function sendToJoinClipBoard(content) {
+export async function sendToJoinClipBoard(content) {
 
     await axios({
         method: 'post',
