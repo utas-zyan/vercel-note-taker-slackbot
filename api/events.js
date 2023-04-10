@@ -9,7 +9,7 @@ import {debug} from './_utils'
 
 module.exports = async (req, res) => {
     var type = req.body.type
-    await debug(res, JSON.stringify(req));
+    await debug(res, JSON.stringify(req.body));
     if (type === "url_verification") {
         await challenge(req, res)
     }
