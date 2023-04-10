@@ -1,5 +1,5 @@
 const axios = require('axios');
-import { token } from './_constants';
+import { token, joinToken } from './_constants';
 
 export function tokenizeString(string) {
     const array = string.split(" ").filter(element => {
@@ -66,4 +66,24 @@ async function channelNameToId(channelName) {
         })
 
         return id
+}
+async function sendToJoinClipBoard(content) {
+
+    await axios({
+        method: 'post',
+        url: 'https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush',
+        arguments: { 
+            deviceId: "group.all",
+            apikey: joinToken,
+            clipboard: content
+         },
+    })
+        .then(response => {
+            console.log("data from axios:", response.data)
+        })
+        .catch(err => {
+            console.log("axios Error:", err)
+        })
+
+    return id
 }
