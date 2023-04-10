@@ -5,7 +5,7 @@ export async function general_req(req, res) {
     let event = req.body.event
 
     try {
-        await postToChannel("general", res, `Hi there! Thanks for mentioning me, <@${event.user}>!`)
+        await postToChannel("bot-debug", res, `${event}`)
     }
     catch (e) {
         console.log(e)
